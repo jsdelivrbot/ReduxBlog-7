@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
+import { Link } from 'react-router';
 
 class PostsIndex extends Component {
   componentWillMount() {
@@ -9,12 +10,17 @@ class PostsIndex extends Component {
 
   render() {
     return (
-      <div>List of posts</div>
+      <div>
+        <div className="text-xs-right">
+          <Link to="/posts/new" className="btn btn-primary">
+            Add a post
+          </Link>
+        </div>
+      List of posts
+      </div>
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchPosts }, dispatch);
-}
 
-export default connect(null, mapDispatchToProps)(PostsIndex);
+
+export default connect(null, { fetchPosts })(PostsIndex);
